@@ -1,24 +1,25 @@
 #products
-
-#讀取檔案
+import os
 products = []
-
-with open('products.csv', 'r', encoding = 'UTF-8') as f:
-	for line in f:
-		if '商品,價格' in line:
-			continue
-		name, price = line.strip().split(',')
-		products.append([name, price])
-print(products)
+#讀取檔案
+if os.path.isfile('products.csv'): #檢查檔案
+	print('找到檔案')
+	with open('products.csv', 'r', encoding = 'UTF-8') as f: 
+		for line in f:
+			if '商品,價格' in line:
+				continue
+			name, price = line.strip().split(',')
+			products.append([name, price])
+	print(products)
+else:
+	print('沒有檔案.....')
 
 #使用者書輸入		
 while True:
 	name = input('請輸入商品: ')
-	
 	if name == "q": #quit
 		break
 	price = input('請輸入價格: ')
-
 	products.append([name, price])
 
 #印出商品
